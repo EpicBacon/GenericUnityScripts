@@ -12,30 +12,14 @@ public class GuiTouchHandler : MonoBehaviour
 		{
 			RaycastHit hit = new RaycastHit();
 	        for (int i = 0; i < Input.touchCount; ++i) {
-	            if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {
 	            // Construct a ray from the current touch coordinates
 	            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
 	            if (Physics.Raycast(ray, out hit)) {
-	                hit.transform.gameObject.SendMessage("OnMouseDown");
-	              }					
-	           }
-                if (Input.GetTouch(i).phase.Equals(TouchPhase.Stationary) || Input.GetTouch(i).phase.Equals(TouchPhase.Moved))
-                {
-                    // Construct a ray from the current touch coordinates
-                    Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        hit.transform.gameObject.SendMessage("OnMouseKeepDown");
-                    }
+                    if (Input.GetTouch(i).phase == TouchPhase.Began)
+                        hit.transform.gameObject.SendMessage("OnMouseDown");
+                    else
+                        hit.transform.gameObject.SendMessage("OnMouseEnter");
                 }
-				if (Input.GetTouch(i).phase.Equals(TouchPhase.Ended)) {
-	            // Construct a ray from the current touch coordinates
-	            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-	            if (Physics.Raycast(ray, out hit)) {
-	                hit.transform.gameObject.SendMessage("OnMouseUp");
-	              }
-	
-	       		}
 	    	}
 		}
 	}
