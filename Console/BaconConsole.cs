@@ -8,7 +8,9 @@ public static class BaconConsole
         get { return lines; }
     }
 
-    private static int		maxline = 4;
+    static int currentlinenumber = 0;
+
+    private static int		maxline = 6;
     private static readonly List<string> lines;
 
     static BaconConsole()
@@ -21,7 +23,8 @@ public static class BaconConsole
 	public static void 	WriteLine(string toadd)
 	{
         if (Lines != null)
-		Lines.Add(toadd);
+		Lines.Add(currentlinenumber  + toadd);
+	    currentlinenumber ++;
 		if (Lines.Count > maxline)
 			Lines.RemoveAt(0);
 	}
