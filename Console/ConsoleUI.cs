@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ConsoleUI : MonoBehaviour {
 
@@ -17,11 +16,6 @@ public class ConsoleUI : MonoBehaviour {
     public void Start () {
         pos = new Rect(0.01f, 0.6f, 0.5f, 0.05f);
     }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
 
     public void OnGUI()
     {
